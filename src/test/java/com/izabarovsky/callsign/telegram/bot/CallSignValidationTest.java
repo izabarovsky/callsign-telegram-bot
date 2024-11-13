@@ -85,7 +85,8 @@ public class CallSignValidationTest {
                 Arguments.of(RandomStringUtils.randomAlphabetic(4) + "+", textK2CallSingIsInvalid()),
                 Arguments.of("УкєЇї", textEnterValueOrSkip("OfficialCallSign")),
                 Arguments.of("QwАбвЇ- 123", textEnterValueOrSkip("OfficialCallSign")),
-                Arguments.of("Bax (Бакс)", textEnterValueOrSkip("OfficialCallSign"))
+                Arguments.of("Bax (Бакс)", textEnterValueOrSkip("OfficialCallSign")),
+                Arguments.of("Іі", textEnterValueOrSkip("OfficialCallSign"))
         );
     }
 
