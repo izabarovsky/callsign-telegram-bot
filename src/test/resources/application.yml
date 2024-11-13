@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16.2-alpine3.18:///callsign
+    username: postgres
+    password: postgres
+  flyway:
+    clean-on-validation-error: false
+    clean-disabled: false
+
+logging:
+  level:
+    com.izabarovsky.callsign.telegram.bot.dmrid.RadioIdClient: DEBUG
+
+bot:
+  name: test_bot:${BOT_NAME}
+  token: bot_token:${BOT_TOKEN}
+  chat: bot_chat:${BOT_CHAT}
+  api: https://api.telegram.org/
+  hook: https://call-sign.transceivers.ninja/
