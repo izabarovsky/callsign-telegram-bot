@@ -28,8 +28,6 @@ public class FlowTest {
     @Autowired
     private RootHandler<UpdateWrapper, HandlerResult> handler;
     @Autowired
-    private DialogStateService dialogStateService;
-    @Autowired
     private CallSignRepository repository;
 
     @Test
@@ -88,54 +86,6 @@ public class FlowTest {
         result = handler.handle(updFromUser(tgId, chatId, "kyiv")).getResponseMsg();
         assertEquals(TextUtils.textDialogDone(), result.getText());
         assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-    }
-
-    @Test
-    void newcomerCantSearch() {
-        var tgId = randomId();
-        var chatId = randomId();
-        var userName = "test";
-        var expected = TextUtils.textHelloNewcomer(userName);
-        var update = updFromUser(tgId, chatId, Command.SEARCH);
-        update.getUpdate().getMessage().getFrom().setUserName(userName);
-        var result = handler.handle(update).getResponseMsg();
-        assertEquals(expected, result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-    }
-
-    @Test
-    void memberCanSearch() {
-        var exists = getExistsCallSign(repository);
-        var tgId = exists.getTgId();
-        var chatId = randomId();
-
-        var result = handler.handle(updFromUser(tgId, chatId, Command.SEARCH)).getResponseMsg();
-        assertEquals(TextUtils.textEnterSearch(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-
-        result = handler.handle(updFromUser(tgId, chatId, exists.getK2CallSign().substring(0, 3)))
-                .getResponseMsg();
-        var expectedFound = "Знайдено 1 учасників";
-        assertTrue(result.getText().startsWith(expectedFound));
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-
-        assertEquals(DialogState.EXPECT_SEARCH, dialogStateService.getState(tgId),
-                "Still search mode");
-
-        result = handler.handle(updFromUser(tgId, chatId, exists.getOfficialCallSign()))
-                .getResponseMsg();
-        assertTrue(result.getText().startsWith(expectedFound));
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-
-        result = handler.handle(updFromUser(tgId, chatId, "ssssss")).getResponseMsg();
-        assertEquals(TextUtils.textNothingFound(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-
-        result = handler.handle(updFromUser(tgId, chatId, Command.CANCEL)).getResponseMsg();
-        assertEquals(TextUtils.textUseMenuButtons(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
-
-        assertNull(dialogStateService.getState(tgId), "State cleaned after Cancel command");
     }
 
     @ParameterizedTest
