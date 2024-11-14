@@ -37,12 +37,7 @@ public class DefaultRootHandler implements Handler<UpdateWrapper, HandlerResult>
         var groupChatCommandChain = new ChainHandler(dummyHandler)
                 .setHandler(cmdCondition(Command.MY_K2_INFO), getHandler(MyK2InfoGroupAction.class))
                 .setHandler(cmdCondition(Command.K2_INFO), getHandler(K2InfoAction.class))
-                .setHandler(cmdCondition(Command.STATISTICS), getHandler(K2StatisticsGroupAction.class))
-                .setHandler(cmdCondition(Command.REPEATERS), getHandler(RepeatersPrivateAction.class))
-                .setHandler(cmdCondition(Command.OFFICIAL), getHandler(RepeatersOfficialAction.class))
-                .setHandler(cmdCondition(Command.NONOFFICIAL), getHandler(RepeatersNonOfficialAction.class))
-                .setHandler(cmdCondition(Command.PARROTS), getHandler(RepeatersParrotsAction.class))
-                .setHandler(cmdCondition(Command.ECHOLINK), getHandler(RepeatersEcholinkAction.class));
+                .setHandler(cmdCondition(Command.STATISTICS), getHandler(K2StatisticsGroupAction.class));
 
         return BranchHandler.builder()
                 .condition(getCondition(IsPersonalChat.class))
