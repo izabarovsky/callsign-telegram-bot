@@ -3,8 +3,6 @@ package com.izabarovsky.callsign.telegram.bot;
 import com.izabarovsky.callsign.telegram.bot.persistence.CallSignRepository;
 import com.izabarovsky.callsign.telegram.bot.tg.Command;
 import com.izabarovsky.callsign.telegram.bot.tg.HandlerResult;
-import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogState;
-import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogStateService;
 import com.izabarovsky.callsign.telegram.bot.tg.handlers.RootHandler;
 import com.izabarovsky.callsign.telegram.bot.tg.update.UpdateWrapper;
 import com.izabarovsky.callsign.telegram.bot.tg.utils.TextUtils;
