@@ -114,10 +114,9 @@ public class SearchTest {
         var chatId = randomId();
         handler.handle(updFromUser(tgId, chatId, Command.SEARCH));
         assertEquals(DialogState.EXPECT_SEARCH, dialogStateService.getState(tgId), "Entered search mode");
-        var result = handler.handle(updFromUser(tgId, chatId, Command.K2_INFO))
-                .getResponseMsg();
+        var result = handler.handle(updFromUser(tgId, chatId, Command.K2_INFO));
         assertEquals(DialogState.EXPECT_SEARCH, dialogStateService.getState(tgId), "Still search mode");
-        assertEquals(textNothingFound(), result.getText());
+        assertNull(result);
     }
 
 }
