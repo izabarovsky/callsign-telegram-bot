@@ -30,6 +30,10 @@ public class NextStateAction implements Handler<UpdateWrapper, HandlerResult> {
                 yield msgEnterValueOrSkip(chatId, "QTH");
             }
             case EXPECT_QTH -> {
+                dialogService.putState(id, DialogState.EXPECT_BIRTHDATE);
+                yield msgEnterValueOrSkip(chatId, "День народження");
+            }
+            case EXPECT_BIRTHDATE -> {
                 dialogService.dropState(id);
                 yield msgDialogDone(chatId);
             }

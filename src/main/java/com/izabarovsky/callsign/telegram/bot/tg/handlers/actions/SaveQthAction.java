@@ -3,13 +3,14 @@ package com.izabarovsky.callsign.telegram.bot.tg.handlers.actions;
 import com.izabarovsky.callsign.telegram.bot.service.CallSignModel;
 import com.izabarovsky.callsign.telegram.bot.service.CallSignService;
 import com.izabarovsky.callsign.telegram.bot.tg.HandlerResult;
+import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogState;
 import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogStateService;
 import com.izabarovsky.callsign.telegram.bot.tg.handlers.Handler;
 import com.izabarovsky.callsign.telegram.bot.tg.update.UpdateWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgDialogDone;
+import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgEnterValueOrSkip;
 
 @AllArgsConstructor
 @Component
@@ -24,8 +25,8 @@ public class SaveQthAction implements Handler<UpdateWrapper, HandlerResult> {
         CallSignModel callSignModel = callSignService.getCallSign(tgId).orElseThrow();
         callSignModel.setQth(payload.getText());
         callSignService.save(callSignModel);
-        dialogStateService.dropState(chatId);
-        return msgDialogDone(chatId);
+        dialogStateService.putState(tgId, DialogState.EXPECT_BIRTHDATE);
+        return msgEnterValueOrSkip(chatId, "День народження");
     }
 
 }
