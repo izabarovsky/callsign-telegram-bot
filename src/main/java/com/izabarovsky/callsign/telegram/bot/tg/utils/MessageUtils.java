@@ -163,11 +163,13 @@ public class MessageUtils {
                         <b>K2CallSign</b>: %s
                         <b>OfficialCallSign</b>: %s
                         <b>QTH</b>: %s
-                        <b>DMR_ID</b>: %s""",
+                        <b>DMR_ID</b>: %s
+                        <b>BirthDate</b>: %s""",
                 callSignModel.getK2CallSign(),
                 callSignModel.getOfficialCallSign(),
                 callSignModel.getQth(),
-                callSignModel.getDmrId()
+                callSignModel.getDmrId(),
+                callSignModel.getBirthDate()
         );
     }
 
