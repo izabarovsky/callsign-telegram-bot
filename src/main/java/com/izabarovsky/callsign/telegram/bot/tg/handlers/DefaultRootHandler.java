@@ -55,10 +55,16 @@ public class DefaultRootHandler implements Handler<UpdateWrapper, HandlerResult>
     }
 
     private BranchHandler commandInSessionBranch() {
-        var existsUser = BranchHandler.builder()
+        var cmdInSearchMode = BranchHandler.builder()
+                .condition(getCondition(IsSearchSession.class))
+                .branchTrue(dummyHandler)
+                .branchFalse(s -> msgOnAnyUnknown(s.getChatId()))
+                .build();
+
+        var existsUserCommands = BranchHandler.builder()
                 .condition(cmdCondition(Command.SKIP))
                 .branchTrue(getHandler(NextStateAction.class))
-                .branchFalse(s -> msgOnAnyUnknown(s.getChatId()))
+                .branchFalse(cmdInSearchMode)
                 .build();
 
         var newcomerSkipNode = BranchHandler.builder()
@@ -75,7 +81,7 @@ public class DefaultRootHandler implements Handler<UpdateWrapper, HandlerResult>
 
         var existsUserNode = BranchHandler.builder()
                 .condition(getCondition(IsExistsUser.class))
-                .branchTrue(existsUser)
+                .branchTrue(existsUserCommands)
                 .branchFalse(newcomerUser)
                 .build();
 
