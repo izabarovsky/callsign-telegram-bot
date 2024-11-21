@@ -126,6 +126,7 @@ public class DefaultRootHandler implements Handler<UpdateWrapper, HandlerResult>
                 .setHandler(getCondition(IsWaitForK2CallSign.class), getHandler(SaveK2CallSignAction.class))
                 .setHandler(getCondition(IsWaitForOfficialCallSign.class), getHandler(SaveOfficialCallSignAction.class))
                 .setHandler(getCondition(IsWaitForQth.class), getHandler(SaveQthAction.class))
+                .setHandler(getCondition(IsWaitForBirthDate.class), getHandler(SaveBirthDateAction.class))
                 .setHandler(getCondition(IsWaitForSearch.class), getHandler(PerformSearchAction.class));
 
         return BranchHandler.builder()

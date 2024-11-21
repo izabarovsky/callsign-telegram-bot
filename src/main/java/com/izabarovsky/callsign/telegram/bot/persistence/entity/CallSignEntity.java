@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -22,6 +23,7 @@ public class CallSignEntity {
     private String firstName;
     private String lastName;
     private String userName;
+    private LocalDate birthDate;
     @NotNull
     @Column(name = "k2_call_sign", unique = true)
     private String k2CallSign;

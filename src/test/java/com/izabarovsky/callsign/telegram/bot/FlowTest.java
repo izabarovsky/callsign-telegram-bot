@@ -3,8 +3,6 @@ package com.izabarovsky.callsign.telegram.bot;
 import com.izabarovsky.callsign.telegram.bot.persistence.CallSignRepository;
 import com.izabarovsky.callsign.telegram.bot.tg.Command;
 import com.izabarovsky.callsign.telegram.bot.tg.HandlerResult;
-import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogState;
-import com.izabarovsky.callsign.telegram.bot.tg.dialog.DialogStateService;
 import com.izabarovsky.callsign.telegram.bot.tg.handlers.RootHandler;
 import com.izabarovsky.callsign.telegram.bot.tg.update.UpdateWrapper;
 import com.izabarovsky.callsign.telegram.bot.tg.utils.TextUtils;
@@ -30,6 +28,8 @@ public class FlowTest {
     @Autowired
     private CallSignRepository repository;
 
+    private static final String MSG_ON_CHATID_ASSERT = "Response to chatId";
+
     @Test
     void newcomerCreateFlow() {
         var tgId = randomId();
@@ -37,19 +37,23 @@ public class FlowTest {
 
         var result = handler.handle(updFromUser(tgId, chatId, Command.CREATE)).getResponseMsg();
         assertEquals(TextUtils.textK2CallSignRequired(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, k2CallSign())).getResponseMsg();
         assertEquals(TextUtils.textEnterValueOrSkip("OfficialCallSign"), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, officialCallSign())).getResponseMsg();
         assertEquals(TextUtils.textEnterValueOrSkip("QTH"), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, "kyiv")).getResponseMsg();
+        assertEquals(TextUtils.textEnterValueOrSkip("День народження"), result.getText());
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
+
+        result = handler.handle(updFromUser(tgId, chatId, "1988-03-03")).getResponseMsg();
         assertEquals(TextUtils.textDialogDone(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
     }
 
     @Test
@@ -59,11 +63,11 @@ public class FlowTest {
 
         var result = handler.handle(updFromUser(tgId, chatId, Command.CREATE)).getResponseMsg();
         assertEquals(TextUtils.textK2CallSignRequired(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, Command.SKIP)).getResponseMsg();
         assertEquals(TextUtils.textStepCantSkip(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
     }
 
     @Test
@@ -73,19 +77,23 @@ public class FlowTest {
 
         var result = handler.handle(updFromUser(tgId, chatId, Command.EDIT)).getResponseMsg();
         assertEquals(TextUtils.textEnterValueOrSkip("K2CallSign"), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, k2CallSign())).getResponseMsg();
         assertEquals(TextUtils.textEnterValueOrSkip("OfficialCallSign"), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, officialCallSign())).getResponseMsg();
         assertEquals(TextUtils.textEnterValueOrSkip("QTH"), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
 
         result = handler.handle(updFromUser(tgId, chatId, "kyiv")).getResponseMsg();
+        assertEquals(TextUtils.textEnterValueOrSkip("День народження"), result.getText());
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
+
+        result = handler.handle(updFromUser(tgId, chatId, "2000-12-12")).getResponseMsg();
         assertEquals(TextUtils.textDialogDone(), result.getText());
-        assertEquals(String.valueOf(chatId), result.getChatId(), "Response to chatId");
+        assertEquals(String.valueOf(chatId), result.getChatId(), MSG_ON_CHATID_ASSERT);
     }
 
     @ParameterizedTest

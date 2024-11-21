@@ -80,6 +80,10 @@ public class MessageUtils {
         return newMessage(chatId, null, textCallSingIsInvalid(), buildSkipOrCancelMenu());
     }
 
+    public static HandlerResult msgBirthDateIsInvalid(Long chatId) {
+        return newMessage(chatId, null, textBirthDateIsInvalid(), buildSkipOrCancelMenu());
+    }
+
     public static HandlerResult msgK2CallSingIsInvalid(Long chatId) {
         return newMessage(chatId, null, textK2CallSingIsInvalid(), buildCancelMenu());
     }
@@ -159,11 +163,13 @@ public class MessageUtils {
                         <b>K2CallSign</b>: %s
                         <b>OfficialCallSign</b>: %s
                         <b>QTH</b>: %s
-                        <b>DMR_ID</b>: %s""",
+                        <b>DMR_ID</b>: %s
+                        <b>BirthDate</b>: %s""",
                 callSignModel.getK2CallSign(),
                 callSignModel.getOfficialCallSign(),
                 callSignModel.getQth(),
-                callSignModel.getDmrId()
+                callSignModel.getDmrId(),
+                callSignModel.getBirthDate()
         );
     }
 

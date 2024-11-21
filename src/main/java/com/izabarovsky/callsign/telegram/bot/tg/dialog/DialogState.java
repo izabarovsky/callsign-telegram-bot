@@ -4,5 +4,6 @@ public enum DialogState {
     EXPECT_UNOFFICIAL,
     EXPECT_OFFICIAL,
     EXPECT_QTH,
+    EXPECT_BIRTHDATE,
     EXPECT_SEARCH
 }

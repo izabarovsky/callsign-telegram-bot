@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class IsSearchSession implements Condition<UpdateWrapper> {
-    private final DialogStateService dialogService;
+public class IsWaitForBirthDate implements Condition<UpdateWrapper> {
+    private final DialogStateService dialogStateService;
 
     @Override
     public boolean check(UpdateWrapper update) {
-        return DialogState.EXPECT_SEARCH.equals(dialogService.getState(update.getUserId()));
+        var tgId = update.getUserId();
+        return DialogState.EXPECT_BIRTHDATE.equals(dialogStateService.getState(tgId));
     }
 
 }

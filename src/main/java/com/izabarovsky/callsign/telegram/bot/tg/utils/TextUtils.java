@@ -27,6 +27,12 @@ public class TextUtils {
                 Якщо ще не маєш офіційного позивного, просто тисни Skip""";
     }
 
+    public static String textBirthDateIsInvalid() {
+        return """
+                Невалідний формат дати!
+                Введи дату в форматі рррр-мм-дд""";
+    }
+
     public static String textK2CallSingIsInvalid() {
         return """
                 Позивний невалідний!
@@ -120,14 +126,14 @@ public class TextUtils {
         return """
                 🗽 Можна без офіційного позивного,
                 дотримуючись етики!
-                
+                                
                 <b>Kyiv-1</b>
                 RX 446.225 / TX 434.850 (offset: -11.375)
                 CTCSS: 88.5Hz
                 QTH - Святошинський відділ РАЦС
                 Icom IC-F211
                 Босс Система
-                
+                                
                 <b>Kyiv-2 🔋</b>
                 RX 446.150 / TX 434.950 (offset -11.2)
                 CTCSS: 74.4Hz
@@ -142,21 +148,21 @@ public class TextUtils {
     public static String textRepeatersOfficial() {
         return """
                 <b>Тільки з офіційним позивним!</b>
-                
+                                
                 <b>R3 🔋</b>
                 RX 145.675 / TX 145.075 (offset: -0.6)
                 CTCSS: 88.5Hz
-                
+                                
                 <b>R76 🔋</b>
                 RX 438.800 / TX 431.200 (offset -7.6)
                 CTCSS: 88.5Hz
                 QTH - Бровари
-                
+                                
                 <b>R81</b>
                 RX 438.925 / TX 431.325 (offset -7.6)
                 CTCSS: 88.5Hz
                 QTH - Кловський узвіз
-                
+                                
                 <b>R85 🔋</b>
                 RX 439.025 / TX 431.425 (offset -7.6)
                 Analog
@@ -164,7 +170,7 @@ public class TextUtils {
                 Digital
                 TS: 1 CC: 1
                 TG: 25501 (Kyiv)
-                
+                                
                 <b>R89</b>
                 RX 439.125 / TX 431.525 (offset -7.6)
                 Analog
@@ -173,7 +179,7 @@ public class TextUtils {
                 TS: 1 CC: 1
                 TG: 25501 (Kyiv)
                 QTH - Кловський узвіз
-                
+                                
                 <b>R100 (DMR)</b>
                 RX 439.400 / TX 431.800 (offset -7.6)
                 TS: 1 CC: 1
@@ -188,11 +194,11 @@ public class TextUtils {
                 RX/TX 436.700
                 CTSS: 71.9Hz
                 QTH - Бровари
-                
+                                
                 <b>WhiteChurch Parrot 👻</b>
                 RX/TX 145.400
                 QTH - Біла Церква
-                
+                                
                 <b>Parrot R92</b>
                 RX/TX 439.200
                 CTSS: 88.5
