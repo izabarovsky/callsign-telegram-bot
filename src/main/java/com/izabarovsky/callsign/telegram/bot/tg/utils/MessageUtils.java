@@ -128,13 +128,8 @@ public class MessageUtils {
                 .build();
     }
 
-    public static HandlerResult msgPrivateRepeaters(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeatersPrivate(), buildRepeatersInlineMenu(threadId));
-    }
-
-    @Deprecated
-    public static HandlerResult msgGroupRepeaters(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeatersGroup(), buildRepeatersInlineMenu(threadId));
+    public static HandlerResult msgMenuRepeaters(Long chatId, Integer threadId) {
+        return newMessage(chatId, threadId, textRepeaters(), buildRepeatersInlineMenu(threadId));
     }
 
     public static HandlerResult msgRepeatersNonOfficial(Long chatId, Integer threadId, List<String> repeaters) {
@@ -151,6 +146,10 @@ public class MessageUtils {
 
     public static HandlerResult msgRepeatersEcholink(Long chatId, Integer threadId, List<String> repeaters) {
         return newMessage(chatId, threadId, join(textEcholink(), repeaters), null);
+    }
+
+    public static HandlerResult msgRepeatersDigital(Long chatId, Integer threadId, List<String> repeaters) {
+        return newMessage(chatId, threadId, join(textDigital(), repeaters), null);
     }
 
     public static String parseList(List<CallSignModel> list) {

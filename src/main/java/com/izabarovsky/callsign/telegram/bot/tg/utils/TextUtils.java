@@ -104,22 +104,8 @@ public class TextUtils {
         );
     }
 
-    public static String textRepeatersPrivate() {
+    public static String textRepeaters() {
         return "Репітери Києва 🎙️";
-    }
-
-    public static String textRepeatersGroup() {
-        return String.format("""
-                        <b>Репітери Києва 🎙️</b>
-                        Офіційні -> %s
-                        Неофіційні -> %s
-                        Папуги -> %s
-                        Ехолінк -> %s
-                        """,
-                Command.OFFICIAL.value(),
-                Command.NONOFFICIAL.value(),
-                Command.PARROTS.value(),
-                Command.ECHOLINK.value());
     }
 
     public static String textRepeatersNonOfficial() {
@@ -136,5 +122,9 @@ public class TextUtils {
 
     public static String textEcholink() {
         return "<b>Echolink</b>";
+    }
+
+    public static String textDigital() {
+        return "<b>Digital Voice</b>";
     }
 }

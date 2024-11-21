@@ -31,7 +31,7 @@ public class RepeatersTest {
     @Autowired
     private CallSignRepository callSignRepository;
 
-    private static final String OFFICIAL_INFO = "<b>R3 \uD83D\uDD0B</b>\nRX 145.675 / TX 145.075 (offset: -0.6)\nCTCSS: 88.5Hz";
+    private static final String OFFICIAL_INFO = "<b>R89 \uD83D\uDD0B</b>\nRX 145.675 / TX 145.075 (offset: -0.6)\nCTCSS: 88.5Hz";
     private static final String NONOFFICIAL_INFO = "<b>Kyiv-2 \uD83D\uDD0B</b>\nRX 446.150 / TX 434.950 (offset -11.2)\nCTCSS: 74.4Hz\nQTH - Кловський узвіз";
     private static final String PARROTS_INFO = "<b>Brovary Parrot</b>\nRX/TX 436.700\nCTSS: 71.9Hz\nQTH - Бровари";
     private static final String ECHOLINK_INFO = "RX/TX 438.375\nCTSS: 123.0Hz\nQTH - Борщагівка";
@@ -61,11 +61,13 @@ public class RepeatersTest {
         var nonofficialExpected = String.join("\n", textRepeatersNonOfficial(), NONOFFICIAL_INFO);
         var parrotsExpected = String.join("\n", textParrots(), PARROTS_INFO);
         var echolinkExpected = String.join("\n", textEcholink(), ECHOLINK_INFO);
+        var digitalExpected = String.join("\n", textDigital(), OFFICIAL_INFO);
         return Stream.of(
                 Arguments.of(Command.OFFICIAL, officialExpected),
                 Arguments.of(Command.NONOFFICIAL, nonofficialExpected),
                 Arguments.of(Command.PARROTS, parrotsExpected),
-                Arguments.of(Command.ECHOLINK, echolinkExpected)
+                Arguments.of(Command.ECHOLINK, echolinkExpected),
+                Arguments.of(Command.DIGITAL, digitalExpected)
         );
     }
 
@@ -73,6 +75,7 @@ public class RepeatersTest {
         var official = new RepeaterEntity();
         official.setInfo(OFFICIAL_INFO);
         official.setOfficial(true);
+        official.setDigital(true);
         return official;
     }
 

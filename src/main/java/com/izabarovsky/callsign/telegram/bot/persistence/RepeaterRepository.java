@@ -20,4 +20,7 @@ public interface RepeaterRepository extends JpaRepository<RepeaterEntity, Long> 
     @Query("select u from RepeaterEntity u where u.echolink = true")
     List<RepeaterEntity> findEcholink();
 
+    @Query("select u from RepeaterEntity u where u.digital = true")
+    List<RepeaterEntity> findDigital();
+
 }

@@ -15,7 +15,8 @@ public enum Command {
     OFFICIAL("/Official"),
     NONOFFICIAL("/NonOfficial"),
     PARROTS("/Parrots"),
-    ECHOLINK("/Echolink");
+    ECHOLINK("/Echolink"),
+    DIGITAL("/Digital");
 
 
     private final String value;
