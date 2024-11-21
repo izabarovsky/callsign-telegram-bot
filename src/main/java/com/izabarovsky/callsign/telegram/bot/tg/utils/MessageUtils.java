@@ -15,6 +15,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 import static com.izabarovsky.callsign.telegram.bot.tg.utils.MenuUtils.*;
 import static com.izabarovsky.callsign.telegram.bot.tg.utils.TextUtils.*;
@@ -136,20 +137,20 @@ public class MessageUtils {
         return newMessage(chatId, threadId, textRepeatersGroup(), buildRepeatersInlineMenu(threadId));
     }
 
-    public static HandlerResult msgRepeatersNonOfficial(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeatersNonOfficial(), null);
+    public static HandlerResult msgRepeatersNonOfficial(Long chatId, Integer threadId, List<String> repeaters) {
+        return newMessage(chatId, threadId, join(textRepeatersNonOfficial(), repeaters), null);
     }
 
-    public static HandlerResult msgRepeatersOfficial(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeatersOfficial(), null);
+    public static HandlerResult msgRepeatersOfficial(Long chatId, Integer threadId, List<String> repeaters) {
+        return newMessage(chatId, threadId, join(textRepeatersOfficial(), repeaters), null);
     }
 
-    public static HandlerResult msgParrots(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textParrots(), null);
+    public static HandlerResult msgParrots(Long chatId, Integer threadId, List<String> repeaters) {
+        return newMessage(chatId, threadId, join(textParrots(), repeaters), null);
     }
 
-    public static HandlerResult msgRepeatersEcholink(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeatersEcholink(), null);
+    public static HandlerResult msgRepeatersEcholink(Long chatId, Integer threadId, List<String> repeaters) {
+        return newMessage(chatId, threadId, join(textEcholink(), repeaters), null);
     }
 
     public static String parseList(List<CallSignModel> list) {
@@ -200,6 +201,13 @@ public class MessageUtils {
                 .text(text)
                 .build();
         return new HandlerResult(msg);
+    }
+
+    private static String join(String label, List<String> items) {
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add(label);
+        items.forEach(joiner::add);
+        return joiner.toString();
     }
 
 }
