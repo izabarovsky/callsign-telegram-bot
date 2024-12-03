@@ -104,113 +104,27 @@ public class TextUtils {
         );
     }
 
-    public static String textRepeatersPrivate() {
+    public static String textRepeaters() {
         return "Репітери Києва 🎙️";
     }
 
-    public static String textRepeatersGroup() {
-        return String.format("""
-                        <b>Репітери Києва 🎙️</b>
-                        Офіційні -> %s
-                        Неофіційні -> %s
-                        Папуги -> %s
-                        Ехолінк -> %s
-                        """,
-                Command.OFFICIAL.value(),
-                Command.NONOFFICIAL.value(),
-                Command.PARROTS.value(),
-                Command.ECHOLINK.value());
-    }
-
     public static String textRepeatersNonOfficial() {
-        return """
-                🗽 Можна без офіційного позивного,
-                дотримуючись етики!
-                                
-                <b>Kyiv-1</b>
-                RX 446.225 / TX 434.850 (offset: -11.375)
-                CTCSS: 88.5Hz
-                QTH - Святошинський відділ РАЦС
-                Icom IC-F211
-                Босс Система
-                                
-                <b>Kyiv-2 🔋</b>
-                RX 446.150 / TX 434.950 (offset -11.2)
-                CTCSS: 74.4Hz
-                QTH - Кловський узвіз
-                435.375 - канал для прямих зв'язків
-                Vertex Standard VXR-9000EU 40W
-                Антена - колінеар
-                Босс 131й
-                """;
+        return "🗽 Можна без офіційного позивного, дотримуючись етики!";
     }
 
     public static String textRepeatersOfficial() {
-        return """
-                <b>Тільки з офіційним позивним!</b>
-                                
-                <b>R3 🔋</b>
-                RX 145.675 / TX 145.075 (offset: -0.6)
-                CTCSS: 88.5Hz
-                                
-                <b>R76 🔋</b>
-                RX 438.800 / TX 431.200 (offset -7.6)
-                CTCSS: 88.5Hz
-                QTH - Бровари
-                                
-                <b>R81</b>
-                RX 438.925 / TX 431.325 (offset -7.6)
-                CTCSS: 88.5Hz
-                QTH - Кловський узвіз
-                                
-                <b>R85 🔋</b>
-                RX 439.025 / TX 431.425 (offset -7.6)
-                Analog
-                CTCSS: 88.5Hz
-                Digital
-                TS: 1 CC: 1
-                TG: 25501 (Kyiv)
-                                
-                <b>R89</b>
-                RX 439.125 / TX 431.525 (offset -7.6)
-                Analog
-                CTCSS: 88.5Hz
-                Digital
-                TS: 1 CC: 1
-                TG: 25501 (Kyiv)
-                QTH - Кловський узвіз
-                                
-                <b>R100 (DMR)</b>
-                RX 439.400 / TX 431.800 (offset -7.6)
-                TS: 1 CC: 1
-                TG: 25501 (Kyiv)
-                """;
+        return "<b>Тільки з офіційним позивним!</b>";
     }
 
     public static String textParrots() {
-        return """
-                🦜 🦜 🦜
-                <b>Brovary Parrot</b>
-                RX/TX 436.700
-                CTSS: 71.9Hz
-                QTH - Бровари
-                                
-                <b>WhiteChurch Parrot 👻</b>
-                RX/TX 145.400
-                QTH - Біла Церква
-                                
-                <b>Parrot R92</b>
-                RX/TX 439.200
-                CTSS: 88.5
-                """;
+        return "🦜 🦜 🦜";
     }
 
-    public static String textRepeatersEcholink() {
-        return """
-                <b>Echolink</b>
-                RX/TX 438.375
-                CTSS: 123.0Hz
-                QTH - Борщагівка
-                """;
+    public static String textEcholink() {
+        return "<b>Echolink</b>";
+    }
+
+    public static String textDigital() {
+        return "<b>Digital Voice</b>";
     }
 }

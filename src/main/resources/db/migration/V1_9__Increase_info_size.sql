@@ -1,0 +1,2 @@
+ALTER TABLE repeater
+    ALTER COLUMN info TYPE VARCHAR(200);

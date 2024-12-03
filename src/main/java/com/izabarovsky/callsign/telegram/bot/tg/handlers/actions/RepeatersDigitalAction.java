@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgParrots;
+import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgRepeatersDigital;
 
 @AllArgsConstructor
 @Component
-public class RepeatersParrotsAction implements Handler<UpdateWrapper, HandlerResult> {
+public class RepeatersDigitalAction implements Handler<UpdateWrapper, HandlerResult> {
     private final RepeaterRepository repeaterRepository;
 
     @Override
     public HandlerResult handle(UpdateWrapper payload) {
-        List<String> repeaters = repeaterRepository.findParrots()
+        List<String> repeaters = repeaterRepository.findDigital()
                 .stream().map(RepeaterEntity::getInfo)
                 .toList();
-        return msgParrots(payload.getChatId(), payload.getThreadId(), repeaters);
+        return msgRepeatersDigital(payload.getChatId(), payload.getThreadId(), repeaters);
     }
 
 }

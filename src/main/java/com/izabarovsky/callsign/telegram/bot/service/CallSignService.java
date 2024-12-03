@@ -2,6 +2,7 @@ package com.izabarovsky.callsign.telegram.bot.service;
 
 import com.izabarovsky.callsign.telegram.bot.persistence.CallSignRepository;
 import com.izabarovsky.callsign.telegram.bot.persistence.entity.CallSignEntity;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -13,15 +14,11 @@ import java.util.Optional;
 import static java.util.Objects.nonNull;
 
 @Slf4j
+@AllArgsConstructor
 @Component
 public class CallSignService {
     private final CallSignRepository callSignRepository;
     private final CallSignMapper mapper;
-
-    public CallSignService(CallSignRepository callSignRepository, CallSignMapper mapper) {
-        this.callSignRepository = callSignRepository;
-        this.mapper = mapper;
-    }
 
     public Optional<CallSignModel> getCallSign(Long tgId) {
         Optional<CallSignEntity> result = callSignRepository.findByTgId(tgId);

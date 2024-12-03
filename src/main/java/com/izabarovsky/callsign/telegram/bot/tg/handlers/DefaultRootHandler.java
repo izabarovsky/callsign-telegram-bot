@@ -108,11 +108,12 @@ public class DefaultRootHandler implements Handler<UpdateWrapper, HandlerResult>
                 .setHandler(cmdCondition(Command.SEARCH), getHandler(StartDialogSearchAction.class))
                 .setHandler(cmdCondition(Command.GET_ALL), getHandler(GetAllCallSignsAction.class))
                 .setHandler(cmdCondition(Command.STATISTICS), getHandler(K2StatisticsPrivateAction.class))
-                .setHandler(cmdCondition(Command.REPEATERS), getHandler(RepeatersPrivateAction.class))
+                .setHandler(cmdCondition(Command.REPEATERS), getHandler(RepeatersMenuAction.class))
                 .setHandler(cmdCondition(Command.OFFICIAL), getHandler(RepeatersOfficialAction.class))
                 .setHandler(cmdCondition(Command.NONOFFICIAL), getHandler(RepeatersNonOfficialAction.class))
                 .setHandler(cmdCondition(Command.PARROTS), getHandler(RepeatersParrotsAction.class))
-                .setHandler(cmdCondition(Command.ECHOLINK), getHandler(RepeatersEcholinkAction.class));
+                .setHandler(cmdCondition(Command.ECHOLINK), getHandler(RepeatersEcholinkAction.class))
+                .setHandler(cmdCondition(Command.DIGITAL), getHandler(RepeatersDigitalAction.class));
 
         return BranchHandler.builder()
                 .condition(getCondition(IsExistsUser.class))

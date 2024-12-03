@@ -54,11 +54,13 @@ public class MenuUtils {
         InlineKeyboardButton buttonNonOfficial = newInlineButton(Command.NONOFFICIAL, "Неофіційні", threadId);
         InlineKeyboardButton buttonParrots = newInlineButton(Command.PARROTS, "Папуги", threadId);
         InlineKeyboardButton buttonEcholink = newInlineButton(Command.ECHOLINK, "Ехолінк", threadId);
+        InlineKeyboardButton buttonDigital = newInlineButton(Command.DIGITAL, "Цифрові", threadId);
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         rows.add(Collections.singletonList(buttonOfficial));
         rows.add(Collections.singletonList(buttonNonOfficial));
         rows.add(Collections.singletonList(buttonParrots));
         rows.add(Collections.singletonList(buttonEcholink));
+        rows.add(Collections.singletonList(buttonDigital));
         return InlineKeyboardMarkup.builder()
                 .keyboard(rows)
                 .build();
