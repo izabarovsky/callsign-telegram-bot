@@ -10,9 +10,9 @@ public class TextUtils {
     public static String textOnNewDmrId(CallSignModel k2CallSign) {
         return String.format("""
                         %s
-                        Комм'юніті К2 поздоровляє %s [%s]
+                        Комм'юніті К2 вітає %s [%s]
                         з отриманням DMRID [%s]!
-                        Ласкаво просимо в цифру!""",
+                        Ласкаво просимо в цифру! 🎉🍾""",
                 Objects.isNull(k2CallSign.getUserName()) ? "hidden" : "@" + k2CallSign.getUserName(),
                 k2CallSign.getK2CallSign(),
                 k2CallSign.getOfficialCallSign(),
