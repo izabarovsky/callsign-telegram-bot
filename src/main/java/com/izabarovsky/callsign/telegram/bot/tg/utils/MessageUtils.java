@@ -181,12 +181,14 @@ public class MessageUtils {
                         <b>OfficialCallSign</b>: %s
                         <b>QTH</b>: %s
                         <b>DMR_ID</b>: %s
+                        <b>BirthDate</b>: %s
                         <b>Registered</b>: %s""",
                 Objects.isNull(callSignModel.getUserName()) ? "hidden" : "@" + callSignModel.getUserName(),
                 callSignModel.getK2CallSign(),
                 callSignModel.getOfficialCallSign(),
                 callSignModel.getQth(),
                 callSignModel.getDmrId(),
+                callSignModel.getBirthDate(),
                 formatter.format(callSignModel.getCreationTimestamp())
         );
     }
