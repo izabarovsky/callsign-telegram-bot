@@ -53,3 +53,11 @@ FROM callsign
 GROUP BY date
 ORDER BY date;
 ```
+
+### TODO: Add disabled repeater 
+
+<b>R100 (DMR)</b>
+RX 439.400 / TX 431.800 (offset -7.6)
+TS: 1 CC: 1
+TG: 25501 (Kyiv)
+На базі MMDVM, репітер давно не обслуговувався
