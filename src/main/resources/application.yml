@@ -15,4 +15,4 @@ bot:
   chat: ${BOT_CHAT}
   thread: ${BOT_THREAD}
   api: https://api.telegram.org/
-  hook: https://call-sign.transceivers.ninja/
+  hook: https://transceivers.ninja/
