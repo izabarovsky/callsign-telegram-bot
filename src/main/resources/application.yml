@@ -16,3 +16,13 @@ bot:
   thread: ${BOT_THREAD}
   api: https://api.telegram.org/
   hook: https://transceivers.ninja/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,scheduledtasks,loggers,metrics"
+  endpoint:
+    health:
+      show-details: always
+    scheduledtasks:
+      enabled: true
