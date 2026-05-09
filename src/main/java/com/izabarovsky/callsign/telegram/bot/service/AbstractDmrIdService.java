@@ -62,30 +62,33 @@ public abstract class AbstractDmrIdService {
         enrichDmrIds(tasks);
     }
 
-    /**
-     * Consumer, contains integration logic
-     * Perform request to radioid api
-     * If id found, save it to db
-     * Else, just save to db last apicall timestamp
-     *
-     * @return consumer
-     */
     protected void enrichDmrIds(List<IntegrationEntity> tasks) {
-        List<String> callsigns = tasks.stream()
-                .map(s -> s.getCallSignEntity().getOfficialCallSign())
-                .toList();
-        var queryParams = new QueryParams(callsigns);
-        try {
-            var response = radioIdClient.getDmrId(queryParams);
+        log.info("Starting individual enrichment for {} tasks", tasks.size());
 
-            tasks.forEach(s -> {
-                        var currentCallSign = s.getCallSignEntity().getOfficialCallSign();
-                        findDmrId(response, currentCallSign)
-                                .ifPresentOrElse(handleReceivedDmrId(s), updateIntegrationTimestamp(s));
-                    }
-            );
-        } catch (FeignException e) {
-            log.warn("Exception call radioid ({}): {}", queryParams.getCallsign(), e.getMessage());
+        for (IntegrationEntity task : tasks) {
+            String currentCallSign = task.getCallSignEntity().getOfficialCallSign();
+
+            try {
+                var response = radioIdClient.getDmrId(new QueryParams(currentCallSign));
+
+                if (nonNull(response) && response.getCount() > 0) {
+                    findDmrId(response, currentCallSign)
+                            .ifPresentOrElse(
+                                    handleReceivedDmrId(task),
+                                    updateIntegrationTimestamp(task)
+                            );
+                } else {
+                    updateIntegrationTimestamp(task).run();
+                }
+                Thread.sleep(500);
+
+            } catch (FeignException e) {
+                updateIntegrationTimestamp(task).run();
+            } catch (InterruptedException e) {
+                log.error("Enrichment break", e);
+                Thread.currentThread().interrupt();
+                break;
+            }
         }
     }
 
