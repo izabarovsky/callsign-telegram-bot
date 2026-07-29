@@ -100,10 +100,13 @@ public abstract class AbstractDmrIdService {
      * @return
      */
     private Optional<DmrIdModel> findDmrId(ResultModel resultModel, String callSign) {
+        log.info("Try to get dmrid for {}", callSign);
         if (resultModel.getCount() == 0) return Optional.empty();
-        return resultModel.getResults().stream()
+        var result =  resultModel.getResults().stream()
                 .filter(t -> t.getCallsign().equals(callSign))
                 .findFirst();
+        log.info("Found DmrIdModel for callsign: {}, result: {}", callSign, result);
+        return result;
     }
 
     /**
