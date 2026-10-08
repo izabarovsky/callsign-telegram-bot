@@ -104,8 +104,16 @@ public class TextUtils {
         );
     }
 
-    public static String textRepeaters() {
+    public static String textRepeatersLocal() {
         return "Репітери Києва 🎙️";
+    }
+
+    public static String textRepeatersUkraine() {
+        String flag = "\uD83C\uDDFA" + "\uD83C\uDDE6";
+        return """
+                Репітери України %s
+                https://docs.google.com/spreadsheets/d/1Hxvus0C72gtiBaM2JPrPVpf7IUc_-zZYNPJQ9Tv_-IA/edit?usp=sharing
+                """.formatted(flag);
     }
 
     public static String textRepeatersNonOfficial() {

@@ -11,13 +11,13 @@ public enum Command {
     CREATE("/Create"),
     CANCEL("/Cancel"),
     SKIP("/Skip"),
-    REPEATERS("/Repeaters"),
+    REPEATERS_LOCAL("/RepeatersLocal"),
+    REPEATERS_UKRAINE("/RepeatersUkraine"),
     OFFICIAL("/Official"),
     NONOFFICIAL("/NonOfficial"),
     PARROTS("/Parrots"),
     ECHOLINK("/Echolink"),
     DIGITAL("/Digital");
-
 
     private final String value;
 

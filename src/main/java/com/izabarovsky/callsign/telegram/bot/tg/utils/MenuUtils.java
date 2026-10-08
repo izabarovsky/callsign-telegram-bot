@@ -27,7 +27,7 @@ public class MenuUtils {
 
     public static ReplyKeyboardMarkup buildMainMenu() {
         List<KeyboardRow> keyboardRows = keyboardRows(Command.MY_K2_INFO,
-                Command.SEARCH, Command.STATISTICS, Command.REPEATERS);
+                Command.SEARCH, Command.STATISTICS, Command.REPEATERS_LOCAL, Command.REPEATERS_UKRAINE);
         return newReplyKeyboardMarkup(keyboardRows);
     }
 
