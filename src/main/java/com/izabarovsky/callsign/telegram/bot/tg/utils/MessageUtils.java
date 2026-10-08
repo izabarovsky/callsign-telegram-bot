@@ -128,8 +128,12 @@ public class MessageUtils {
                 .build();
     }
 
-    public static HandlerResult msgMenuRepeaters(Long chatId, Integer threadId) {
-        return newMessage(chatId, threadId, textRepeaters(), buildRepeatersInlineMenu(threadId));
+    public static HandlerResult msgMenuRepeatersLocal(Long chatId, Integer threadId) {
+        return newMessage(chatId, threadId, textRepeatersLocal(), buildRepeatersInlineMenu(threadId));
+    }
+
+    public static HandlerResult msgMenuRepeatersUkraine(Long chatId, Integer threadId) {
+        return newMessage(chatId, threadId, textRepeatersUkraine(), null);
     }
 
     public static HandlerResult msgRepeatersNonOfficial(Long chatId, Integer threadId, List<String> repeaters) {

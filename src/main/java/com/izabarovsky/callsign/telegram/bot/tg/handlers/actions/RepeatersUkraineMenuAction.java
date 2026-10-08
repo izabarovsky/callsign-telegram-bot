@@ -5,14 +5,15 @@ import com.izabarovsky.callsign.telegram.bot.tg.handlers.Handler;
 import com.izabarovsky.callsign.telegram.bot.tg.update.UpdateWrapper;
 import org.springframework.stereotype.Component;
 
-import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgMenuRepeaters;
+import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgMenuRepeatersLocal;
+import static com.izabarovsky.callsign.telegram.bot.tg.utils.MessageUtils.msgMenuRepeatersUkraine;
 
 @Component
-public class RepeatersMenuAction implements Handler<UpdateWrapper, HandlerResult> {
+public class RepeatersUkraineMenuAction implements Handler<UpdateWrapper, HandlerResult> {
 
     @Override
     public HandlerResult handle(UpdateWrapper payload) {
-        return msgMenuRepeaters(payload.getChatId(), payload.getThreadId());
+        return msgMenuRepeatersUkraine(payload.getChatId(), payload.getThreadId());
     }
 
 }
